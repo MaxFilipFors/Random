@@ -1,0 +1,41 @@
+mylist1 = [1,4,1,4,1]
+mylist2 = [1,2,3,4,5]
+mylist3 = [3,4,5,3,7]
+def solution(A):
+#test if no cut is needed
+    nocut = False 
+    for i in range(len(A)-2):
+        if A[i] > A [i+1] and A[i+2] > A[i+1]:
+            nocut = True
+        elif A[i] < A [i+1] and A[i+2] < A[i+1]:
+            nocut = True
+        else: 
+            nocut = False
+            break
+    
+    if nocut:
+        return 0 
+        
+    count = 0
+    for i in range (len(A)):
+        arr = A[:i] + A[i+1:]
+        i = 0 
+        check = False
+        while i < len(A)-3:
+            if not check and i != 0:
+                pass
+            elif arr[i] > arr[i+1] and arr[i+2] > arr[i+1]:
+                check = True
+            elif arr[i] < arr[i+1] and arr[i+2] < arr[i+1]:
+                check = True
+            else:
+                check = False
+            i += 1
+        if check:
+            count += 1
+    return -1 if not count else count
+
+
+print(solution(mylist1))
+print(solution(mylist2))
+print(solution(mylist3))
